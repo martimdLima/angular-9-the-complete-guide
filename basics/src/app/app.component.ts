@@ -9,5 +9,17 @@ import { Component } from '@angular/core';
   }`]*/
 })
 export class AppComponent {
-  title = 'basics';
+  username: string  = '';
+  title: string = 'basics';
+  userCreationStatus: string = 'No User created';
+
+  onUpdateServerName(event: Event) {
+    //console.log(event);
+    this.serverName = (<HTMLInputElement> event.target).value;
+  }
+
+  onCreateUsername(username: string) {
+    this.userCreationStatus = 'Username ' + username + ' was created!';
+    this.username = '';
+  }
 }
