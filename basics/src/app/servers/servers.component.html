@@ -1,9 +1,14 @@
 <div class="div">
-    <div class="col-xs-12">
+    <div class="div">
       <button class="btn btn-primary"
-              [disabled] = "!allowNewServer">Add a Server </button>
+              [disabled] = "!allowNewServer"
+              (click)="onCreateServer()">Add a Server </button>
     </div>
-    &nbsp;&nbsp;
+    &nbsp;
+    <div class="div">
+      <!--<p [innerText] = "allowNewServer"></p> -->
+      <p>{{ serverCreationStatus}}</p>
+    </div>
     <div class="div">
       <app-server></app-server>
       <app-server></app-server>
