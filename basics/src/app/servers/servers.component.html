@@ -16,7 +16,8 @@
 
     <div class="div">
       <!--<p [innerText] = "allowNewServer"></p> -->
-      <p>{{ serverCreationStatus }}</p>
+      <!--<p>{{ serverCreationStatus }}</p> -->
+      <p *ngIf= "serverCreated">Server was created. Server name: {{serverName}}</p>
     </div>
 
     <div class="div">
