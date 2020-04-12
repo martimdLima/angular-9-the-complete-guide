@@ -18,7 +18,13 @@ export class AppComponent {
   }
 
   onRemoveServer(id: number) {
-    const position = id + 1;
+
+    // using the sourceMap to debug the code, we can see that the addiction of one to the id,
+    // was causing the error deleting the "servers"
+    // const position = id + 1;
+    // this.servers.splice(position, 1);
+
+    const position = id;
     this.servers.splice(position, 1);
   }
 }
