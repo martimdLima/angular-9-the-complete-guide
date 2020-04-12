@@ -34,6 +34,24 @@
       </div>-->
 
       <div class="div">
+        <div>
+          <button class="btn btn-primary" (click)="onShowDetails()">Display Details</button>
+        </div>
+
+        &nbsp;
+
+        <div>
+          <p *ngIf = "onDisplay">Secret password = password</p>
+        </div>
+
+        <div *ngFor = "let time of timeStamps; index as i"
+             [ngStyle]="{backgroundColor: i >= 4 ? 'blue' : 'transparent'}"
+             [ngClass]="{'timestamp': i >= 5}">{{time}}
+        </div>
+      </div>
+
+
+      <div class="div">
         <app-servers></app-servers>
       </div>
 

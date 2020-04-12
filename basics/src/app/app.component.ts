@@ -12,14 +12,21 @@ export class AppComponent {
   username: string  = '';
   title: string = 'basics';
   userCreationStatus: string = 'No User created';
-
-  onUpdateServerName(event: Event) {
-    //console.log(event);
-    this.serverName = (<HTMLInputElement> event.target).value;
-  }
+  onDisplay = false;
+  timeStamps = [];
+  counter = 0;
 
   onCreateUsername(username: string) {
     this.userCreationStatus = 'Username ' + username + ' was created!';
     this.username = '';
+  }
+
+  onShowDetails() {
+
+    this.counter+=1;
+
+    this.onDisplay = !this.onDisplay;
+
+    this.timeStamps.push(new Date());
   }
 }
