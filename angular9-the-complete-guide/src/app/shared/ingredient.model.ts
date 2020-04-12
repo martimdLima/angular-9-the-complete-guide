@@ -1,7 +1,8 @@
 export class Ingredient {
 
     /*
-   * Constructors can be built two ways in Angular
+   * In Typescript, constructors can be built in two ways:
+
      public name: string;
      public amount: number;
 
@@ -14,5 +15,4 @@ export class Ingredient {
 
   constructor(public name: string, public amount: number) {
   }
-
 }
