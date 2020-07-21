@@ -16,7 +16,7 @@ export class CockpitComponent implements OnInit {
     serverContent: string;
   }>();
 
-  newServerName = "";
+  //newServerName = "";
   newServerContent = "";
 
   constructor() {}
@@ -30,9 +30,9 @@ export class CockpitComponent implements OnInit {
     });
   }
 
-  onAddBlueprint() {
+  onAddBlueprint(nameInput: HTMLInputElement) {
     this.blueprintCreated.emit({
-      serverName: this.newServerName,
+      serverName: nameInput.value,
       serverContent: this.newServerContent,
     });
   }
