@@ -1,4 +1,18 @@
-import { Component, OnInit, Input, ViewEncapsulation, SimpleChanges, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component,
+         OnInit,
+         Input,
+         ViewEncapsulation,
+         SimpleChanges,
+         OnChanges,
+         DoCheck,
+         AfterContentInit,
+         AfterContentChecked,
+         AfterViewInit,
+         AfterViewChecked,
+         OnDestroy,
+         ElementRef,
+         ViewChild,
+         ContentChild} from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -7,15 +21,17 @@ import { Component, OnInit, Input, ViewEncapsulation, SimpleChanges, OnChanges, 
   encapsulation: ViewEncapsulation.Emulated //None, Native, Emulated ;
 })
 
-export class ServerElementComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy, ViewChild{
+export class ServerElementComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy{
 
   @Input('srvElement') element: {type: string, name: string, content: string};
   @Input() name: string;
-  @ViewChild('heading') header: ElementRef;
+  @ViewChild('heading', {static: true}) header: ElementRef;
+  @ContentChild('contentParagraph', {static: true}) paragraph: ElementRef;
 
   constructor() {
     console.log('constructor called');
   }
+
 
   // A lifecycle hook that is called when any data-bound property of a directive changes
   ngOnChanges(changes: SimpleChanges ) {
@@ -38,6 +54,7 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
   // A lifecycle hook that is called after Angular has fully initialized all content of a directive.
   ngAfterContentInit() {
     console.log('ngAfterContentInit called');
+    console.log("The paragraph content is: " + this.paragraph.nativeElement.textContent);
   }
 
   // A lifecycle hook that is called after the default change detector has completed checking all content of a directive.
@@ -48,7 +65,7 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
   // A lifecycle hook that is called after Angular has fully initialized a component's view.
   ngAfterViewInit() {
     console.log('ngAfterViewInit called');
-    console.log(this.header.nativeElement.textContent);
+    console.log("The text content is: " + this.header.nativeElement.textContent);
   }
 
   // A lifecycle hook that is called after the default change detector has completed checking a component's view for changes.
