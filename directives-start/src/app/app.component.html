@@ -24,7 +24,34 @@
           </li>
         </div>
 
-        <div *ngIf="!onlyOdd">
+        <!-- <div *ngIf="!onlyOdd">
+          <li
+            class="list-group-item"
+            [ngClass]="{ odd: even % 2 != 0 }"
+            [ngStyle]="{
+              backgroundColor: even % 2 != 0 ? 'blue' : 'transparent'
+            }"
+            *ngFor="let even of evenNumbers"
+          >
+            {{ even }}
+          </li>
+        </div> -->
+
+        <!-- //Behind the scenes transformations of Structural Directives  -->
+        <!-- <ng-template [ngIf]="!onlyOdd">
+        <li
+          class="list-group-item"
+          [ngClass]="{ odd: even % 2 != 0 }"
+          [ngStyle]="{
+            backgroundColor: even % 2 != 0 ? 'blue' : 'transparent'
+          }"
+          *ngFor="let even of evenNumbers"
+        >
+          {{ even }}
+        </li>
+      </ng-template> -->
+
+        <div *appUnless="onlyOdd">
           <li
             class="list-group-item"
             [ngClass]="{ odd: even % 2 != 0 }"
@@ -37,20 +64,6 @@
           </li>
         </div>
       </ul>
-
-      <!-- //Behind the scenes transformations of Structural Directives  -->
-      <ng-template [ngIf]="!onlyOdd">
-        <li
-          class="list-group-item"
-          [ngClass]="{ odd: even % 2 != 0 }"
-          [ngStyle]="{
-            backgroundColor: even % 2 != 0 ? 'blue' : 'transparent'
-          }"
-          *ngFor="let even of evenNumbers"
-        >
-          {{ even }}
-        </li>
-      </ng-template>
       <br />
       <div>
         <p appBasicHighlight>Style with basic directive!</p>
