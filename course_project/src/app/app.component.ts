@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular9-the-complete-guide';
+
+  loadedFeature = 'recipe';
+
+  onNavigate(featureSelected: string) {
+    this.loadedFeature = featureSelected;
+  }
 }
