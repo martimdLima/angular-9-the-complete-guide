@@ -8,7 +8,7 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeListComponent implements OnInit {
 
-  recipes : Recipe[] = [
+  recipeList : Recipe[] = [
     new Recipe("Lasagna","Test Recipe 1","https://i.ytimg.com/vi/BFrkRFgHLVk/hqdefault.jpg"),
     new Recipe("Meatballs","Test Recipe 2","https://thedolcediet.com/wp-content/uploads/2016/01/meatball-1.jpg"),
     new Recipe("Hamburger","Test Recipe 3","https://img1.mashed.com/img/gallery/fast-food-hamburgers-ranked-worst-to-best/intro-1540401194.jpg"),
