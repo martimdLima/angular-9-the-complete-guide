@@ -37,13 +37,26 @@
           </li>
         </div>
       </ul>
-      <!-- <ng-template [ngIf]="onlyOdd">
-        <p>Only odd</p>
-      </ng-template> -->
+
+      <!-- //Behind the scenes transformations of Structural Directives  -->
+      <ng-template [ngIf]="!onlyOdd">
+        <li
+          class="list-group-item"
+          [ngClass]="{ odd: even % 2 != 0 }"
+          [ngStyle]="{
+            backgroundColor: even % 2 != 0 ? 'blue' : 'transparent'
+          }"
+          *ngFor="let even of evenNumbers"
+        >
+          {{ even }}
+        </li>
+      </ng-template>
       <br />
       <div>
         <p appBasicHighlight>Style with basic directive!</p>
-        <p [appBetterHighlight] = "'red'" [defaultColor] = "'yellow'">Style with better directive!</p>
+        <p [appBetterHighlight]="'red'" [defaultColor]="'yellow'">
+          Style with better directive!
+        </p>
       </div>
     </div>
   </div>
