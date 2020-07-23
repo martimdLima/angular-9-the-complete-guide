@@ -4,13 +4,23 @@
       <ul class="nav nav-tabs">
         <li class="nav-item"></li>
         <li role="presentation" class="nav-item">
-          <a class="nav-link active" routerLink="">Home</a>
+          <a
+            class="nav-link"
+            routerLink=""
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
         </li>
         <li role="presentation" class="nav-item">
-          <a class="nav-link" routerLink="/servers">Servers</a>
+          <a class="nav-link" routerLink="/servers" routerLinkActive="active"
+            >Servers</a
+          >
         </li>
         <li role="presentation" class="nav-item">
-          <a class="nav-link" routerLink="/users">Users</a>
+          <a class="nav-link" routerLink="/users" routerLinkActive="active"
+            >Users</a
+          >
         </li>
       </ul>
     </div>
