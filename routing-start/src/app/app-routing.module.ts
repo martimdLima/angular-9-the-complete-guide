@@ -6,6 +6,7 @@ import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { EditServerComponent } from './servers/edit-server/edit-server.component';
+import { AuthGuard } from './auth-guard.service';
 import { Routes, RouterModule } from '@angular/router';
 
 const appRoutes: Routes = [
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'servers',
+    canActivate: [AuthGuard],
     component: ServersComponent,
     children: [
       { path: ':id', component: ServerComponent },
@@ -34,9 +36,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(appRoutes)
-  ],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(appRoutes)],
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}
