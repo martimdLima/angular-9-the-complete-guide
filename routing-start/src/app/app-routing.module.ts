@@ -25,13 +25,15 @@ const appRoutes: Routes = [
     canActivateChild: [AuthGuard],
     component: ServersComponent,
     children: [
-      { path: ':id', 
+      {
+        path: ':id',
         component: ServerComponent,
-        resolve: {server: ServerResolver}
+        resolve: { server: ServerResolver },
       },
-      { path: ':id/edit', 
-        component: EditServerComponent, 
-        canDeactivate: [CanDeactivateGuard] 
+      {
+        path: ':id/edit',
+        component: EditServerComponent,
+        canDeactivate: [CanDeactivateGuard],
       },
     ],
   },
@@ -42,7 +44,7 @@ const appRoutes: Routes = [
   {
     path: 'not-found',
     component: ErrorPageComponent,
-    data: {message: 'Page not found!'}
+    data: { message: 'Page not found!' },
   },
   {
     path: '**',
@@ -51,6 +53,8 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
+  /*   way to overcome the inability old browsers have to redirect to the index.html in case of a 404
+  imports: [RouterModule.forRoot(appRoutes, {useHash: true}) */
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule],
 })
