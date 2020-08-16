@@ -44,7 +44,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     /*
       Operators are functions. There are two kinds of operators:
         Pipeable Operators are the kind that can be piped to Observables using the syntax observableInstance.pipe(operator()). 
-        These include, filter(...), and mergeMap(...). 
         When called, they do not change the existing Observable instance. 
         Instead, they return a new Observable, whose subscription logic is based on the first Observable.
 
