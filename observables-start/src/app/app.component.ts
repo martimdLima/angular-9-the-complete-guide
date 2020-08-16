@@ -26,3 +26,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.activatedSub.unsubscribe();
   }
 }
+
+/*
+Useful Resources:
+  Official Docs: https://rxjs-dev.firebaseapp.com/
+
+  RxJS Series: https://academind.com/learn/javascript/understanding-rxjs/
+
+  Updating to RxJS 6: https://academind.com/learn/javascript/rxjs-6-what-changed/
+*/
