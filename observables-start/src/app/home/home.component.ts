@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { interval, Subscription, Observable } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -40,18 +41,41 @@ export class HomeComponent implements OnInit, OnDestroy {
       }, 1000);
     });
 
-    this.observableSubscription = customIntervalObservable.subscribe(
-      (data) => {
-        console.log(data);
-      },
-      (error) => {
-        console.log(error);
-        alert(error.message);
-      },
-      () => {
-        console.log('Completed!');
-      }
-    );
+    /*
+      Operators are functions. There are two kinds of operators:
+        Pipeable Operators are the kind that can be piped to Observables using the syntax observableInstance.pipe(operator()). 
+        These include, filter(...), and mergeMap(...). 
+        When called, they do not change the existing Observable instance. 
+        Instead, they return a new Observable, whose subscription logic is based on the first Observable.
+
+        A Pipeable Operator is essentially a pure function which takes one Observable as input and generates another Observable as output. 
+        Subscribing to the output Observable will also subscribe to the input Observable.
+        
+        Creation Operators are the other kind of operator, which can be called as standalone functions to create a new Observable. 
+        For example: of(1, 2, 3) creates an observable that will emit 1, 2, and 3, one right after another.
+   */
+
+    this.observableSubscription = customIntervalObservable
+      .pipe(
+        filter((data) => {
+          return data > 0;
+        }),
+        map((data) => {
+          return 'Round ' + data;
+        })
+      )
+      .subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (error) => {
+          console.log(error);
+          alert(error.message);
+        },
+        () => {
+          console.log('Completed!');
+        }
+      );
   }
 
   ngOnDestroy() {
