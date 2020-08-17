@@ -12,9 +12,19 @@ export class AppComponent {
   defaultQuestion = 'teacher';
   answer = '';
   genders = ['male', 'female'];
+  user = {
+    username: '',
+    email: '',
+    secretQuestion: '',
+    answer: '',
+    gender: '',
+  };
+
+  submitted = false;
 
   suggestUserName() {
     const suggestedName = 'Superuser';
+
     /*
     // We use the SetValue to update the FormControl , FormGroup or FormArray. 
     // When we use it to update the FormGroup or FormArray the SetValue requires that the object must match the structure of the FormGroup or FormArray exactly. 
@@ -41,13 +51,22 @@ export class AppComponent {
     });
   }
 
-  onSubmit(form: NgForm) {
+  /*   onSubmit(form: NgForm) {
     console.log(form);
-  }
+  } */
 
   /*   onSubmit() {
     console.log(this.signupForm);
   } */
+
+  onSubmit() {
+    this.submitted = true;
+    this.user.username = this.signupForm.value.userData.username;
+    this.user.email = this.signupForm.value.userData.email;
+    this.user.secretQuestion = this.signupForm.value.secret;
+    this.user.answer = this.signupForm.value.answer;
+    this.user.gender = this.signupForm.value.gender;
+  }
 }
 
 /*
