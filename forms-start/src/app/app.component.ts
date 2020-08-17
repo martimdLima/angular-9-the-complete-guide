@@ -21,3 +21,10 @@ export class AppComponent {
     console.log(this.signupForm);
   } */
 }
+
+/*
+  Useful Resources:
+    https://angular.io/api/forms/Validators
+
+    https://angular.io/api?type=directive
+*/

@@ -12,15 +12,15 @@
             <label for="email">Mail</label>
             <input type="email" id="email" class="form-control" ngModel name="email" required email>
           </div>
+          <p *ngIf="">
+            <Please enter a valid value!/p> </div> <div class="form-group">
+              <label for="secret">Secret Questions</label>
+              <select id="secret" class="form-control" ngModel name="secret" required>
+                <option value="pet">Your first Pet?</option>
+                <option value="teacher">Your first teacher?</option>
+              </select>
         </div>
-        <div class="form-group">
-          <label for="secret">Secret Questions</label>
-          <select id="secret" class="form-control" ngModel name="secret" required>
-            <option value="pet">Your first Pet?</option>
-            <option value="teacher">Your first teacher?</option>
-          </select>
-        </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
       </form>
     </div>
   </div>
