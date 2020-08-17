@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form #f="ngForm" (ngSubmit)="f.valid && onSubmit()">
+        <div id="user-data" ngModelGroup="userData" #userData="ngModelGroup">
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" class="form-control" ngModel #username="ngModel"
+              [ngClass]="{ 'is-invalid': username.invalid && username.touched}" minlength="3" maxlength="12" required>
+            <div class="invalid-feedback" *ngIf="username.invalid && username.touched">
+              <p *ngIf="username.errors.required">Name is required</p>
+            </div>
+            <div class="invalid-feedback" *ngIf="f.submitted && username.invalid && username.errors.minlength">
+              <p *ngIf="username.errors.minlength">Username must be at least 3 characters long</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" name="email" ngModel #email="ngModel"
+              [ngClass]="{ 'is-invalid': email.invalid && email.touched }" email required>
+            <div class="invalid-feedback" *ngIf="email.invalid && email.touched">
+              <p *ngIf="email.errors.required">Email is required</p>
+            </div>
+            <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+              <div *ngIf="email.errors.email">Must be a valid email address</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password" ngModel #password="ngModel"
+              [ngClass]="{ 'is-invalid': password.invalid && password.touched }" minlength="6" maxlength="24" required>
+            <div *ngIf="password.invalid  && password.touched" class="invalid-feedback">
+              <div *ngIf="password.errors.required">Password is required</div>
+            </div>
+            <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+              <div *ngIf="password.errors.minlength">Password should be at least 8 characters long</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Subscriptions</label>
+            <select class="form-control" name="subscription" [ngModel]="subscriptionList[1]" #subscription="ngModel"
+              [ngClass]="{ 'is-invalid': f.submitted && subscription.invalid}" required
+              ng-init="sub=subscriptionList[1]">
+              <option disabled>Select an subscription</option>
+              <option *ngFor="let sub of subscriptionList" [value]="sub">
+                {{sub}}
+              </option>
+            </select>
+            <div *ngIf="f.submitted && !subscription.touched && subscription.invalid" class="invalid-feedback">
+              <div *ngIf="subscription.errors.required">Subscription is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row" *ngIf="submitted">
+    <div class="col-xs-12">
+      <h3>Your Data</h3>
+      <p>Username: {{ userInfo.username }}</p>
+      <p>Email: {{ userInfo.email }}</p>
+      <p>Password: {{ userInfo.password }}</p>
+      <p>Subscription: {{ userInfo.subscriptionType }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- 
+  Add a Form with the following Inputs (and Validators)
+    1) Mail address (should not be empty and should be an email address)
+    2) A Dropdown which allows the user to select from three different Subscriptions ("Basic", "Advanced", "Pro")
+      Set "Advanced" as Default
+    3) A Password field (should not be empty)
+    4) A Submit Button
+
+    Display a warning message if the Form is invalid AND was touched. Display a warning message below each input if it's invalid.
+
+    Upon submitting the form, you should simply print the Value of the Form to the Console.
+    Optionally, display it in your template.
+
+  Useful Resources:
+    https://www.positronx.io/angular-form-validation-with-template-driven-using-bootstrap/
+    https://appdividend.com/2019/12/17/angular-formgroup-example-tutorial-from-scratch/
+    https://www.itsolutionstuff.com/post/angular-ngform-example-ngform-directive-in-angular-9-8example.html
+      -->
