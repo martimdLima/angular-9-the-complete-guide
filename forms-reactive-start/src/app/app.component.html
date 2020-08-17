@@ -12,15 +12,22 @@
           <div class="form-group">
             <label for="email">email</label>
             <input type="text" id="email" formControlName="email" class="form-control">
-            <span *ngIf="!signupForm.get('userData.email').valid && signupForm.get('userData.email').touched" class="help-block">Please
+            <span *ngIf="!signupForm.get('userData.email').valid && signupForm.get('userData.email').touched"
+              class="help-block">Please
               enter a valid email</span>
           </div>
         </div>
-        
         <div class="radio" *ngFor="let gender of genders">
           <label>
             <input type="radio" [value]="gender" formControlName="gender">{{ gender }}
           </label>
+        </div>
+        <div formArrayName="hobbies">
+          <div class="form-group" *ngFor="let hobbyControl of getControls(); let i = index">
+            <input type="text" class="form-control" [formControlName]="i">
+          </div>
+          <h4>Your Hobbies</h4>
+          <button class="btn btn-primary" type="button" (click)="onAddHobyy()">Add Hobyy</button>
         </div>
         <span *ngIf="!signupForm.valid && signupForm.touched" class="help-block">Please enter valid data</span>
         <br>
