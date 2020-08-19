@@ -51,4 +51,13 @@ export class AppComponent {
   }
 
   filteredStatus: string = '';
+
+  onAddServer() {
+    this.servers.push({
+      instanceType: 'small',
+      name: 'New Server',
+      status: 'stable',
+      started: new Date(15, 8, 2020)
+    });
+  }
 }
