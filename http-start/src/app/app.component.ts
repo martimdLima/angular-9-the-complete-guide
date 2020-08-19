@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
       https://academind.com/learn/javascript/hide-javascript-code/
   */
 
-  loadedPosts = [];
+  loadedPosts: Post[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -63,7 +63,7 @@ export class AppComponent implements OnInit {
         })
       )
       .subscribe((posts) => {
-        console.log(posts);
+        this.loadedPosts = posts;
       });
   }
 }
