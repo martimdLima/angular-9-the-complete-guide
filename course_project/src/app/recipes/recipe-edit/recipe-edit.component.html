@@ -48,13 +48,21 @@
               <input type="number" class="form-control" formControlName="amount">
             </div>
             <div class="col-xs-2">
-              <button type="button" class="btn btn-danger">X</button>
+              <button type="button" class="btn btn-danger" (click)="onDeleteIngredient(i)">X</button>
             </div>
           </div>
           <hr>
           <div class="row">
             <div class="col-xs-12">
-              <button type="button" class="btn btn-success" (click)="onAddIngredient()">Add Ingredient</button>
+              <div class="row">
+                <div class="col-xs-3">
+                  <button type="button" class="btn btn-success" (click)="onAddIngredient()">Add Ingredient</button>
+                </div>
+                <div class="col-xs-2">
+                  <button type="button" class="btn btn-danger" (click)="onDeleteAllIngredients()">Remove All
+                    Ingredients</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
