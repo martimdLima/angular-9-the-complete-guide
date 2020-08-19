@@ -90,6 +90,11 @@ export class RecipeService {
     this.getUpdateRecipeList();
   }
 
+  deleteRecipe(index: number) {
+    this.recipeList.splice(index, 1);
+    this.getUpdateRecipeList();
+  }
+
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     this.shoppingListService.addIngredients(ingredients);
   }

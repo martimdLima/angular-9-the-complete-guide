@@ -38,4 +38,8 @@ export class RecipeDetailComponent implements OnInit {
     // navigation using absolute paths
     //this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
   }
+
+  onDeleteRecipe() {
+    this.recipeService.deleteRecipe(this.id);
+  }
 }
