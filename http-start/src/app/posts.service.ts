@@ -21,7 +21,7 @@ export class PostsService {
   }
 
   fetchPosts() {
-    this.http
+    return this.http
       .get<{ [key: string]: Post }>(
         'https://ng-complete-guide-c8703.firebaseio.com/posts.json'
       )
@@ -37,7 +37,12 @@ export class PostsService {
           }
           return postsArray;
         })
-      )
-      .subscribe((posts) => {});
+      );
+  }
+
+  deletePosts() {
+    return this.http.delete(
+      'https://ng-complete-guide-c8703.firebaseio.com/posts.json'
+    );
   }
 }
