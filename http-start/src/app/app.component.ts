@@ -12,6 +12,8 @@ import { Subscription } from 'rxjs';
 export class AppComponent implements OnInit, OnDestroy {
   /*
     Usefull Resources:
+      https://angular.io/guide/http
+      https://docs.angularjs.org/api/ng/service/$http
       https://academind.com/learn/node-js/building-a-restful-api-with/
       https://academind.com/learn/javascript/hide-javascript-code/
   */
