@@ -6,14 +6,17 @@ import { NgForm } from "@angular/forms";
   templateUrl: "./auth.component.html",
 })
 export class AuthComponent {
-  isLoginMode = true;
 
-  onSwitchMode() {
-    this.isLoginMode = !this.isLoginMode;
-  }
+    constructor() {}
 
-  onSubmit(form: NgForm) {
-    console.log(form.value);
-    form.reset();
-  }
+    isLoginMode = true;
+
+    onSwitchMode() {
+        this.isLoginMode = !this.isLoginMode;
+    }
+
+    onSubmit(form: NgForm) {
+        console.log(form.value);
+        form.reset();
+    }
 }
