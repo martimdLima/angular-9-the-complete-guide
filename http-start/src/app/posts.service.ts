@@ -24,6 +24,7 @@ export class PostsService {
         postData,
         {
           observe: 'response',
+          responseType: 'json', // responseType can be changed accordingly to: 'text', 'blob', 'json', etc, despite normally being 'json'
         }
       )
       .subscribe(
@@ -45,6 +46,7 @@ export class PostsService {
         {
           headers: new HttpHeaders({ 'Custom-Header': 'Hello' }),
           params: new HttpParams().set('print', 'pretty'),
+          responseType: 'json',
         }
       )
       .pipe(
@@ -70,6 +72,7 @@ export class PostsService {
     return this.http
       .delete('https://ng-complete-guide-c8703.firebaseio.com/posts.json', {
         observe: 'events',
+        responseType: 'json',
       })
       .pipe(
         tap((event) => {
