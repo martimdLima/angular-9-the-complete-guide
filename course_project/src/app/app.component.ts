@@ -9,5 +9,6 @@ export class AppComponent {
   /*
     Useful Resources
       https://firebase.google.com/docs/reference/rest/auth/
+      https://loading.io/css
   */
 }
