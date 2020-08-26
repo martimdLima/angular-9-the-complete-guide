@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
     Useful Resources
       https://firebase.google.com/docs/reference/rest/auth/
       https://loading.io/css
+      https://jwt.io/
   */
 
   ngOnInit() {
