@@ -17,6 +17,8 @@ export class AppComponent implements OnInit {
       https://loading.io/css
       https://jwt.io/
       https://angular.io/guide/dynamic-component-loader
+      https://angular.io/guide/ngmodules
+      https://angular.io/guide/ngmodule-faq
   */
 
   ngOnInit() {
