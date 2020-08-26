@@ -1,19 +1,29 @@
-import { Component } from "@angular/core";
+import { Component, ComponentFactoryResolver, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { AuthService, AuthResponseData } from "./auth.service";
 import { throwError, Observable } from "rxjs";
 import { Router } from "@angular/router";
+import { AlertComponent } from "../shared/alert/alert.component";
+import { PlaceholderDirective } from "../shared/placeholder/placeholder.directive";
 
 @Component({
   selector: "app-auth",
   templateUrl: "./auth.component.html",
 })
 export class AuthComponent {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private componentFactoryResolver: ComponentFactoryResolver
+  ) {}
 
   isLoginMode: boolean = true;
   isLoading: boolean = false;
   error: string = null;
+
+  /* So if we pass in the placeholder directive as a type, 
+     it will automatically find the first place where we use that directive in the template of this component. */
+  @ViewChild(PlaceholderDirective, {static: false}) alertHost: PlaceholderDirective;
 
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
@@ -43,9 +53,9 @@ export class AuthComponent {
         this.router.navigate(["/recipes"]);
       },
       (errorMessage) => {
-        this.error = errorMessage;
         console.log(errorMessage);
-
+        this.error = errorMessage;
+        this.showErrorAlert(errorMessage);
         this.isLoading = false;
       }
     );
@@ -54,5 +64,16 @@ export class AuthComponent {
 
   onHandleError() {
     this.error = null;
+  }
+
+  private showErrorAlert(errorMessage: string) {
+    const alertComponentFactory = this.componentFactoryResolver.resolveComponentFactory(
+      AlertComponent
+    );
+
+    const hostViewContainerRef = this.alertHost.viewContainerRef;
+    hostViewContainerRef.clear();
+
+    hostViewContainerRef.createComponent(alertComponentFactory);
   }
 }
