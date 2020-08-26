@@ -1,7 +1,12 @@
-import { Component, ComponentFactoryResolver, ViewChild } from "@angular/core";
+import {
+  Component,
+  ComponentFactoryResolver,
+  ViewChild,
+  OnDestroy,
+} from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { AuthService, AuthResponseData } from "./auth.service";
-import { throwError, Observable } from "rxjs";
+import { throwError, Observable, Subscription } from "rxjs";
 import { Router } from "@angular/router";
 import { AlertComponent } from "../shared/alert/alert.component";
 import { PlaceholderDirective } from "../shared/placeholder/placeholder.directive";
@@ -10,7 +15,7 @@ import { PlaceholderDirective } from "../shared/placeholder/placeholder.directiv
   selector: "app-auth",
   templateUrl: "./auth.component.html",
 })
-export class AuthComponent {
+export class AuthComponent implements OnDestroy {
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -23,7 +28,10 @@ export class AuthComponent {
 
   /* So if we pass in the placeholder directive as a type, 
      it will automatically find the first place where we use that directive in the template of this component. */
-  @ViewChild(PlaceholderDirective, {static: false}) alertHost: PlaceholderDirective;
+  @ViewChild(PlaceholderDirective, { static: false })
+  alertHost: PlaceholderDirective;
+
+  private closeSubscription: Subscription;
 
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
@@ -74,6 +82,20 @@ export class AuthComponent {
     const hostViewContainerRef = this.alertHost.viewContainerRef;
     hostViewContainerRef.clear();
 
-    hostViewContainerRef.createComponent(alertComponentFactory);
+    const componentRef = hostViewContainerRef.createComponent(
+      alertComponentFactory
+    );
+
+    componentRef.instance.message = errorMessage;
+    this.closeSubscription = componentRef.instance.close.subscribe(() => {
+      this.closeSubscription.unsubscribe();
+      hostViewContainerRef.clear();
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.closeSubscription) {
+      this.closeSubscription.unsubscribe();
+    }
   }
 }
