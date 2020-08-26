@@ -2,13 +2,14 @@ import { Component } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { AuthService, AuthResponseData } from "./auth.service";
 import { throwError, Observable } from "rxjs";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-auth",
   templateUrl: "./auth.component.html",
 })
 export class AuthComponent {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   isLoginMode: boolean = true;
   isLoading: boolean = false;
@@ -39,6 +40,7 @@ export class AuthComponent {
       (responseData) => {
         console.log(responseData);
         this.isLoading = false;
+        this.router.navigate(["/recipes"]);
       },
       (errorMessage) => {
         this.error = errorMessage;
