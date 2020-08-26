@@ -7,7 +7,20 @@ const appRoutes: Routes = [
   {
     path: "recipes",
     /* loadChildren: "./recipes/recipes.module#RecipesModule", */
-    loadChildren: () => import("./recipes/recipes.module").then(model => model.RecipesModule)
+    loadChildren: () =>
+      import("./recipes/recipes.module").then((model) => model.RecipesModule),
+  },
+  {
+    path: "shopping-list",
+    loadChildren: () =>
+      import("./shopping-list/shopping-list.module").then(
+        (model) => model.ShoppingListModule
+      ),
+  },
+  {
+    path: "auth",
+    loadChildren: () =>
+      import("./auth/auth.module").then((model) => model.AuthModule),
   },
 ];
 

@@ -16,12 +16,9 @@ import { AuthModule } from "./auth/auth.module";
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule,
     AppRoutingModule,
-    ShoppingListModule,
     SharedModule,
     CoreModule,
-    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
