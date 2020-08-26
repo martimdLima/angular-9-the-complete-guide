@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "./auth/auth.service";
+import { LoggingService } from "./logging.service";
 
 @Component({
   selector: "app-root",
@@ -7,7 +8,9 @@ import { AuthService } from "./auth/auth.service";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService /* private loggingService: LoggingService */
+  ) {}
   /*
     Useful Resources
       https://firebase.google.com/docs/reference/rest/auth/
@@ -18,5 +21,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.authService.autoLogin();
+    // this.loggingService.printlog("Test Error Message from AppComponent NgOnInit");
   }
 }
