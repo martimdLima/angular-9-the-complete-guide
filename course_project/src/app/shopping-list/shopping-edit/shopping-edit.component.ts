@@ -17,8 +17,6 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   editMode: boolean = false;
   editedItem: Ingredient;
-  editedItemIndex: number;
-
   constructor(
     private shoppingListService: ShoppingListService,
     private store: Store<fromShoppingList.AppState>
@@ -62,10 +60,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
       //   newIngredient
       // );
       this.store.dispatch(
-        new ShoppingListActions.UpdateIngredient({
-          index: this.editedItemIndex,
-          ingredient: newIngredient,
-        })
+        new ShoppingListActions.UpdateIngredient(newIngredient)
       );
     } else {
       // this.shoppingListService.addIngredient(newIngredient);
@@ -84,9 +79,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   onDelete() {
     //this.shoppingListService.deleteIngredient(this.editedItemIndex);
-    this.store.dispatch(
-      new ShoppingListActions.DeleteIngredient(this.editedItemIndex)
-    );
+    this.store.dispatch(new ShoppingListActions.DeleteIngredient());
     this.onClear();
   }
 
