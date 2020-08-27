@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "./shopping-list.service";
-import { Subscription } from "rxjs";
+import { Subscription, Observable } from "rxjs";
 import { LoggingService } from "../logging.service";
+import { Store } from "@ngrx/store";
 
 @Component({
   selector: "app-shopping-list",
@@ -10,20 +11,25 @@ import { LoggingService } from "../logging.service";
   styleUrls: ["./shopping-list.component.css"],
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
-  ingredientList: Ingredient[] = [];
+  ingredientList: Observable<{ ingredientList: Ingredient[] }>;
   private ingChangeSub: Subscription;
+
   constructor(
-    private shoppingListService: ShoppingListService /* private loggingService: LoggingService */
-  ) {}
+    private shoppingListService: ShoppingListService,
+    private store: Store<{
+      shoppingList: { ingredientList: Ingredient[] };
+    }>
+  ) /* private loggingService: LoggingService */
+  {}
 
   ngOnInit() {
-    this.ingredientList = this.shoppingListService.getIngredientList();
-
+    this.ingredientList = this.store.select("shoppingList");
+    /*     this.ingredientList = this.shoppingListService.getIngredientList();
     this.ingChangeSub = this.shoppingListService.ingredientListChanged.subscribe(
       (newIngredientList: Ingredient[]) => {
         this.ingredientList = newIngredientList;
       }
-    );
+    ); */
 
     // this.loggingService.printlog("Test Error Message from ShoppingListComponent NgOnInit");
   }
@@ -33,6 +39,6 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.ingChangeSub.unsubscribe();
+    // this.ingChangeSub.unsubscribe();
   }
 }
