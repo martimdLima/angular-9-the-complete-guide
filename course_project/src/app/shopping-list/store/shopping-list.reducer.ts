@@ -59,9 +59,20 @@ export function ShoppingListReducer(
       return {
         ...state,
         ingredientList: state.ingredientList.filter((ingredient, index) => {
-          console.log(action.payload);
           return index !== action.payload;
         }),
+      };
+    case ShoppingListActions.START_EDIT:
+      return {
+        ...state,
+        editedIngredientIndex: action.payload,
+        editedIngredient: { ...state.ingredientList[action.payload] },
+      };
+    case ShoppingListActions.STOP_EDIT:
+      return {
+        ...state,
+        editedIngredientIndex: -1,
+        editedIngredient: null,
       };
     default:
       return state;
