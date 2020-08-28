@@ -28,22 +28,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .select("auth")
       .pipe(map((authState) => authState.user))
       .subscribe((user) => {
-        this.isAuthenticated = !!user; // !!user == !user ? false : true;
+        this.isAuthenticated = !!user;
       });
   }
 
   onSaveData() {
-    //this.dataStorageService.storeRecipes();
     this.store.dispatch(new RecipesActions.StoreRecipes());
   }
 
   onFetchData() {
-    //this.dataStorageService.fetchRecipes().subscribe();
     this.store.dispatch(new RecipesActions.FetchRecipes());
   }
 
   onLogout() {
-    //   this.authService.logout();
     this.store.dispatch(new AuthActions.Logout());
   }
 

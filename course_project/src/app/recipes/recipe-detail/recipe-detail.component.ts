@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Recipe } from "../recipe.model";
-import { RecipeService } from "../recipe.service";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import * as fromApp from "../../store/app.reducer";
 import { map, switchMap } from "rxjs/operators";
 import * as RecipesActions from "../store/recipes.actions";
+import * as ShoopingListActions from "../../shopping-list/store/shopping-list.actions";
 
 @Component({
   selector: "app-recipe-detail",
@@ -17,16 +17,12 @@ export class RecipeDetailComponent implements OnInit {
   id: number;
 
   constructor(
-    private recipeService: RecipeService,
     private router: Router,
     private route: ActivatedRoute,
     private store: Store<fromApp.AppState>
   ) {}
 
   ngOnInit(): void {
-    //const id = this.route.snapshot.params['id'];
-
-    // Using an Observable Chain
     this.route.params
       .pipe(
         map((params) => {
@@ -45,41 +41,17 @@ export class RecipeDetailComponent implements OnInit {
       .subscribe((recipe) => {
         this.recipe = recipe;
       });
-
-    /*
-      // Using multiple Observables
-      this.route.params.subscribe((params: Params) => {
-      this.id = +params["id"];
-      //this.recipe = this.recipeService.getRecipe(this.id);
-      this.store
-        .select("recipes")
-        .pipe(
-          map((recipesState) =>
-            recipesState.recipes.find((recipe, index) => {
-              return index === this.id;
-            })
-          )
-        )
-        .subscribe((recipe) => {
-          this.recipe = recipe;
-        });
-    }); */
   }
 
   onAddToShoppingList() {
-    this.recipeService.addIngredientsToShoppingList(this.recipe.ingredientList);
+    this.store.dispatch(new ShoopingListActions.AddIngredients(this.recipe.ingredientList));
   }
 
   onEditRecipe() {
-    // navigation using relative paths
     this.router.navigate(["edit"], { relativeTo: this.route });
-
-    // navigation using absolute paths
-    //this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
   }
 
   onDeleteRecipe() {
-    //this.recipeService.deleteRecipe(this.id);
     this.store.dispatch(new RecipesActions.DeleteRecipe(this.id));
     this.router.navigate(["/recipes"]);
   }

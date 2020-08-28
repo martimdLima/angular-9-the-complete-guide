@@ -32,7 +32,5 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new AuthActions.AutoAuthenticate());
-    //this.authService.autoLogin();
-    // this.loggingService.printlog("Test Error Message from AppComponent NgOnInit");
   }
 }

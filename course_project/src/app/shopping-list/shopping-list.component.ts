@@ -14,30 +14,15 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredientList: Observable<{ ingredientList: Ingredient[] }>;
   private ingChangeSub: Subscription;
 
-  constructor(
-    private store: Store<
-      fromApp.AppState
-    > /* private loggingService: LoggingService */
-  ) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit() {
     this.ingredientList = this.store.select("shoppingList");
-    /*     this.ingredientList = this.shoppingListService.getIngredientList();
-    this.ingChangeSub = this.shoppingListService.ingredientListChanged.subscribe(
-      (newIngredientList: Ingredient[]) => {
-        this.ingredientList = newIngredientList;
-      }
-    ); */
-
-    // this.loggingService.printlog("Test Error Message from ShoppingListComponent NgOnInit");
   }
 
   onEditItem(index: number) {
-    //this.shoppingListService.startedEditing.next(index);
     this.store.dispatch(new ShoppingListActions.StartEdit(index));
   }
 
-  ngOnDestroy() {
-    // this.ingChangeSub.unsubscribe();
-  }
+  ngOnDestroy() {}
 }

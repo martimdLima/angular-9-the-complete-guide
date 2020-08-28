@@ -4,7 +4,6 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { Store } from "@ngrx/store";
 import * as fromApp from "../../store/app.reducer";
-import * as RecipesActions from "../../recipes/store/recipes.actions";
 import { map } from "rxjs/operators";
 
 @Component({
@@ -32,7 +31,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   onNewRecipe() {
-    // using a relative route, for this activatedRoute is needed
     this.router.navigate(["new"], { relativeTo: this.route });
   }
 

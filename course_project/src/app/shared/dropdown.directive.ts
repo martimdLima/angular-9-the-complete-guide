@@ -11,10 +11,6 @@ import {
 export class DropDownDirective {
   @HostBinding("class.open") isDisplayed = false;
 
-  // @HostListener('click') displayDropDown() {
-  //   this.isDisplayed = !this.isDisplayed;
-  // }
-
   @HostListener("document:click", ["$event"]) displayDropDown(event: Event) {
     this.isDisplayed = this.elRef.nativeElement.contains(event.target)
       ? !this.isDisplayed

@@ -16,6 +16,5 @@ import { LoggingService } from "../logging.service";
     ReactiveFormsModule,
     ShoppingListRoutingModule,
   ],
-  // providers: [LoggingService]
 })
 export class ShoppingListModule {}
