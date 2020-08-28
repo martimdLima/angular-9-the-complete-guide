@@ -2,12 +2,19 @@ import { Action } from "@ngrx/store";
 
 export const AUTHENTICATE_START = "[Auth] Login Start";
 export const AUTHENTICATE_SUCCESS = "[Auth] Login";
-export const AUTHENTICATE_FAIL = "[Auth] Login Fail"
+export const AUTHENTICATE_FAIL = "[Auth] Login Fail";
 export const LOGOUT = "[Auth] Logout";
-export const SIGNUP = "[Auth] Signup"
+export const SIGNUP = "[Auth] Signup";
 export const SIGNUP_START = "[Auth] Signup Start";
+export const HANDLE_ERROR = "[Auth] Handle Error";
 
-export type AuthActions = AuthenticateSuccess | Logout | AuthenticateStart | AuthenticateFail | SignupStart;
+export type AuthActions =
+  | AuthenticateSuccess
+  | Logout
+  | AuthenticateStart
+  | AuthenticateFail
+  | SignupStart
+  | HandlerError;
 
 export class AuthenticateStart implements Action {
   readonly type = AUTHENTICATE_START;
@@ -29,9 +36,9 @@ export class AuthenticateSuccess implements Action {
 }
 
 export class AuthenticateFail implements Action {
-    readonly type = AUTHENTICATE_FAIL;
+  readonly type = AUTHENTICATE_FAIL;
 
-    constructor(public payload: string) {}
+  constructor(public payload: string) {}
 }
 
 export class Logout implements Action {
@@ -39,7 +46,11 @@ export class Logout implements Action {
 }
 
 export class SignupStart implements Action {
-    readonly type = SIGNUP_START;
+  readonly type = SIGNUP_START;
 
-    constructor(public payload: {email: string; password: string}) {}
+  constructor(public payload: { email: string; password: string }) {}
+}
+
+export class HandlerError implements Action {
+  readonly type = HANDLE_ERROR;
 }

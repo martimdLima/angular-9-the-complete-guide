@@ -29,7 +29,7 @@ export class AuthService {
     private store: Store<fromApp.AppState>
   ) {}
 
-  signupNewUser(email: string, password: string) {
+  /* signupNewUser(email: string, password: string) {
     return this.httpClient
       .post<AuthResponseData>(
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" +
@@ -75,7 +75,7 @@ export class AuthService {
           );
         })
       );
-  }
+  } */
 
   autoLogin() {
     const userData: {
@@ -116,7 +116,6 @@ export class AuthService {
   logout() {
     //this.user.next(null);
     this.store.dispatch(new AuthActions.Logout());
-    this.router.navigate(["/auth"]);
     localStorage.removeItem("userData");
 
     if (this.tokenExpirationTimer) {
