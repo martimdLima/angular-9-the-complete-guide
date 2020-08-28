@@ -106,10 +106,10 @@ export class AuthService {
           expirationDate: new Date(userData._tokenExpirationDate),
         })
       );
-      const expirationTime =
-        new Date(userData._tokenExpirationDate).getTime() -
-        new Date().getTime();
-      this.autoLogout(expirationTime);
+      // const expirationTime =
+      //   new Date(userData._tokenExpirationDate).getTime() -
+      //   new Date().getTime();
+      // this.autoLogout(expirationTime);
     }
   }
 
