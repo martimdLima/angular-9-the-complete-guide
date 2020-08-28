@@ -3,8 +3,9 @@ import * as AuthActions from "./auth.actions";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { of } from "rxjs";
-import { switchMap, catchError, map } from "rxjs/operators";
+import { switchMap, catchError, map, tap } from "rxjs/operators";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 
 export interface AuthResponseData {
   idToken: string;
@@ -36,22 +37,62 @@ export class AuthEffects {
             const expirationDate = new Date(
               new Date().getTime() + +responseData.expiresIn * 1000
             );
-            of(
-              new AuthActions.Login({
-                email: responseData.email,
-                userId: responseData.localId,
-                token: responseData.idToken,
-                expirationDate: expirationDate,
-              })
-            );
+            return new AuthActions.Login({
+              email: responseData.email,
+              userId: responseData.localId,
+              token: responseData.idToken,
+              expirationDate: expirationDate,
+            });
           }),
-          catchError((error) => {
-            // ...
-            return of();
+          catchError((errorResponse) => {
+            let errorMessage: string = errorResponse.error.error.message;
+            if (!errorResponse.error || !errorResponse.error.error) {
+              errorMessage = "An unknow error occurred";
+              return of(new AuthActions.LoginFail(errorMessage));
+            }
+
+            switch (errorMessage) {
+              case "EMAIL_EXISTS":
+                errorMessage = "This email already exists";
+                break;
+              case "EMAIL_NOT_FOUND":
+                errorMessage =
+                  "There is no user record corresponding to this identifier.";
+                break;
+              case "INVALID_PASSWORD":
+                errorMessage = "The password is invalid.";
+                break;
+              case "USER_DISABLED":
+                errorMessage =
+                  "There is no user record corresponding to this identifier.";
+                break;
+              case "OPERATION_NOT_ALLOWED":
+                errorMessage = "This operation is not allowed";
+                break;
+              case "TOO_MANY_ATTEMPTS_TRY_LATER":
+                errorMessage = "Too many attempts, try again later please";
+                break;
+              default:
+                errorMessage = "An unknown error occured!";
+            }
+
+            return of(new AuthActions.LoginFail(errorMessage));
           })
         );
     })
   );
 
-  constructor(private actions$: Actions, private httpClient: HttpClient) {}
+  @Effect({ dispatch: false })
+  authSuccess = this.actions$.pipe(
+    ofType(AuthActions.LOGIN),
+    tap(() => {
+      this.router.navigate(["/"]);
+    })
+  );
+
+  constructor(
+    private actions$: Actions,
+    private httpClient: HttpClient,
+    private router: Router
+  ) {}
 }

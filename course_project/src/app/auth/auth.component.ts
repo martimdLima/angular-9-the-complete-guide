@@ -20,7 +20,6 @@ import * as AuthActions from "../auth/store/auth.actions";
   templateUrl: "./auth.component.html",
 })
 export class AuthComponent implements OnInit, OnDestroy {
-  
   isLoginMode: boolean = true;
   isLoading: boolean = false;
   error: string = null;
@@ -39,11 +38,13 @@ export class AuthComponent implements OnInit, OnDestroy {
     private store: Store<fromApp.AppState>
   ) {}
 
-
   ngOnInit() {
     this.store.select("auth").subscribe((authState) => {
       this.isLoading = authState.loading;
       this.error = authState.authError;
+      if (this.error) {
+        this.showErrorAlert(this.error);
+      }
     });
   }
 
