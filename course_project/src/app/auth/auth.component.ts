@@ -3,6 +3,7 @@ import {
   ComponentFactoryResolver,
   ViewChild,
   OnDestroy,
+  OnInit,
 } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { AuthService, AuthResponseData } from "./auth.service";
@@ -18,14 +19,8 @@ import * as AuthActions from "../auth/store/auth.actions";
   selector: "app-auth",
   templateUrl: "./auth.component.html",
 })
-export class AuthComponent implements OnDestroy {
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private store: Store<fromApp.AppState>
-  ) {}
-
+export class AuthComponent implements OnInit, OnDestroy {
+  
   isLoginMode: boolean = true;
   isLoading: boolean = false;
   error: string = null;
@@ -36,6 +31,21 @@ export class AuthComponent implements OnDestroy {
   alertHost: PlaceholderDirective;
 
   private closeSubscription: Subscription;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private store: Store<fromApp.AppState>
+  ) {}
+
+
+  ngOnInit() {
+    this.store.select("auth").subscribe((authState) => {
+      this.isLoading = authState.loading;
+      this.error = authState.authError;
+    });
+  }
 
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
@@ -61,7 +71,7 @@ export class AuthComponent implements OnDestroy {
       authObservable = this.authService.signupNewUser(email, password);
     }
 
-    authObservable.subscribe(
+    /*     authObservable.subscribe(
       (responseData) => {
         console.log(responseData);
         this.isLoading = false;
@@ -73,7 +83,8 @@ export class AuthComponent implements OnDestroy {
         this.showErrorAlert(errorMessage);
         this.isLoading = false;
       }
-    );
+    ); */
+
     form.reset();
   }
 
