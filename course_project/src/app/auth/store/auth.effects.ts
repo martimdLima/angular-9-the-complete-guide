@@ -18,10 +18,16 @@ export interface AuthResponseData {
 
 @Injectable()
 export class AuthEffects {
+
+@Effect()
+authSignup = this.actions$.pipe(
+    ofType(AuthActions.SIGNUP_START)
+);
+
   @Effect()
   authLogin = this.actions$.pipe(
-    ofType(AuthActions.LOGIN_START),
-    switchMap((authData: AuthActions.LoginStart) => {
+    ofType(AuthActions.AUTHENTICATE_START),
+    switchMap((authData: AuthActions.AuthenticateStart) => {
       return this.httpClient
         .post<AuthResponseData>(
           "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" +
@@ -37,7 +43,7 @@ export class AuthEffects {
             const expirationDate = new Date(
               new Date().getTime() + +responseData.expiresIn * 1000
             );
-            return new AuthActions.Login({
+            return new AuthActions.AuthenticateSuccess({
               email: responseData.email,
               userId: responseData.localId,
               token: responseData.idToken,
@@ -48,7 +54,7 @@ export class AuthEffects {
             let errorMessage: string = errorResponse.error.error.message;
             if (!errorResponse.error || !errorResponse.error.error) {
               errorMessage = "An unknow error occurred";
-              return of(new AuthActions.LoginFail(errorMessage));
+              return of(new AuthActions.AuthenticateFail(errorMessage));
             }
 
             switch (errorMessage) {
@@ -76,7 +82,7 @@ export class AuthEffects {
                 errorMessage = "An unknown error occured!";
             }
 
-            return of(new AuthActions.LoginFail(errorMessage));
+            return of(new AuthActions.AuthenticateFail(errorMessage));
           })
         );
     })
@@ -84,7 +90,7 @@ export class AuthEffects {
 
   @Effect({ dispatch: false })
   authSuccess = this.actions$.pipe(
-    ofType(AuthActions.LOGIN),
+    ofType(AuthActions.AUTHENTICATE_SUCCESS),
     tap(() => {
       this.router.navigate(["/"]);
     })
