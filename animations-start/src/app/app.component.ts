@@ -6,6 +6,7 @@ import {
   transition,
   animate,
   keyframes,
+  group,
 } from '@angular/animations';
 
 @Component({
@@ -125,13 +126,18 @@ import {
         ]))
       ]),
       transition('* => void', [
-        animate(
-          300,
-          style({
+        group([
+          animate(
+            300,
+            style({
+              color: 'red',
+            })
+          ),
+          animate(800, style({
             transform: 'translateX(100px)',
             opacity: 0,
-          })
-        ),
+          }))
+        ]),
       ]),
     ])
   ],
