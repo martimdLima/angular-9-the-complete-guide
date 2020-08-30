@@ -1,21 +1,21 @@
-Angular 9 - The complete Guide
+# Angular 9 - The complete Guide
 
-- Basics
-- Debugging
-- Components & Databinding
-- Directives
-- Services & Dependency Injection
-- Changing Pages with Routing
-- Understanding Observables
-- Handling Forms in Angular Apps
-- Using Pipes to Transform Output
-- Making Http Requests
-- Authentication & Route Protection in Angular
- - Dynamic Components
- - Angular Modules & Optimization in Angular Apps
- - Deploy an Angular App
- - Working with NgRx 
- - Angular Universal / NestJs
- - Angular Animations
- - Service Workers
- - Course Project
+    - Basics
+    - Debugging
+    - Components & Databinding
+    - Directives
+    - Services & Dependency Injection
+    - Changing Pages with Routing
+    - Understanding Observables
+    - Handling Forms in Angular Apps
+    - Using Pipes to Transform Output
+    - Making Http Requests
+    - Authentication & Route Protection in Angular
+    - Dynamic Components
+    - Angular Modules & Optimization in Angular Apps
+    - Deploy an Angular App
+    - Working with NgRx 
+    - Angular Universal / NestJs
+    - Angular Animations
+    - Service Workers
+    - Course Project
