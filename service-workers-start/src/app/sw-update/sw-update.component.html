@@ -1,0 +1,25 @@
+<div *ngIf="updateAvailableEvent" @slideAnimation>
+
+  <div>
+    <h4>Update Info</h4>
+
+<!--     <p>
+      You can install the latest version now,
+      or the app can be automatically updated the next time you launch it.
+    </p>
+
+    <p>
+        A new version of this app ({‌{ updateAvailableEvent?.available.hash | slice:0:6 }}...)
+        was successfully downloaded, but it has not yet been installed.
+        You are currently running an older version ({‌{ updateAvailableEvent?.current.hash | slice:0:6 }}...).
+    </p> -->
+
+    <section>
+      <button (click)="updateNow()">Update now</button>
+      <button (click)="updateLater()">Update later</button>
+    </section>
+  </div>
+
+
+
+</div>
