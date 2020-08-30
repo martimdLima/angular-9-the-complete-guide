@@ -23,7 +23,23 @@
         "files": [
           "/assets/**",
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+        ],
+        "urls": [
+          "https://fonts.googleapis.com/css?family=Oswald:300,700",
+          "https://fonts.gstatic.com/**"
         ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "posts",
+      "urls": ["https://jsonplaceholder.typicode.com/posts"],
+      "cacheConfig": {
+        "maxSize": 5,
+        "maxAge": "6h",
+        "timeout": "10s",
+        "strategy": "freshness"
       }
     }
   ]
