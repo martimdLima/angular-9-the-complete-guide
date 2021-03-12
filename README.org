@@ -137,7 +137,7 @@ Angular uses the Jasmine testing framework. The Jasmine framework provides multi
 
 * Course Project
 
-** [[https://react-course-project-31af6.web.app/][React Course Project]]
+** [[https://ng-course-recipe-book-4d4d5.web.app/recipes][Angular Course Project]]
 
 #+CAPTION: Course Project
 #+NAME:   fig:ACP-0004

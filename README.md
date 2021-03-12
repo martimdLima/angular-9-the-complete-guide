@@ -1,11 +1,11 @@
-- [What is Angular](#org7b16a63)
-- [Features of Angular](#orgb32789c)
-- [Angular Architecture](#orga2a87f2)
-- [Advantages of Angular](#org184b27f)
-- [Limitations of Angular](#orgd0a629a)
-- [Course Structure](#org30478e8)
-- [Course Project](#org45545ac)
-  - [[React Course Project](https://react-course-project-31af6.web.app/)](#org53f7427)
+- [What is Angular](#orgc317a45)
+- [Features of Angular](#orgf1e44f7)
+- [Angular Architecture](#org4658ac5)
+- [Advantages of Angular](#orgc16fcbb)
+- [Limitations of Angular](#orgdaa3711)
+- [Course Structure](#org902d077)
+- [Course Project](#orgfa82387)
+  - [[Angular Course Project](https://ng-course-recipe-book-4d4d5.web.app/recipes)](#org39a7919)
 
 ---
 
@@ -16,14 +16,14 @@ But is JavaScript ideal for developing single-page applications that require mod
 These days, we have a variety of frameworks and libraries designed to provide alternative solutions. With respect to front-end web development, Angular addresses many, if not all, of the issues developers face when using JavaScript on its own.
 
 
-<a id="org7b16a63"></a>
+<a id="orgc317a45"></a>
 
 # What is Angular
 
 Angular is an open-source, JavaScript framework written in TypeScript. Google maintains it, and its primary purpose is to develop single-page applications. As a framework, Angular has clear advantages while also providing a standard structure for developers on a team to work with. It enables users to develop large applications in a maintainable manner.
 
 
-<a id="orgb32789c"></a>
+<a id="orgf1e44f7"></a>
 
 # Features of Angular
 
@@ -40,7 +40,7 @@ Angular is an open-source, JavaScript framework written in TypeScript. Google ma
 Angular uses the Jasmine testing framework. The Jasmine framework provides multiple functionalities to write different kinds of test cases. Karma is the task-runner for the tests that uses a configuration file to set the start-up, reporters, and testing framework.
 
 
-<a id="orga2a87f2"></a>
+<a id="org4658ac5"></a>
 
 # Angular Architecture
 
@@ -67,7 +67,7 @@ Now that you know the basic features of Angular, understanding its architecture 
     Angular comes with its own set of advantages and disadvantages. The next two sections briefly explain them.
 
 
-<a id="org184b27f"></a>
+<a id="orgc16fcbb"></a>
 
 # Advantages of Angular
 
@@ -86,7 +86,7 @@ Now that you know the basic features of Angular, understanding its architecture 
 6.  **Browser Compatibility** Angular is cross-platform and compatible with multiple browsers. An Angular application can typically run on all browsers (Eg: Chrome, Firefox) and OSes, such as Windows, macOS, and Linux.
 
 
-<a id="orgd0a629a"></a>
+<a id="orgdaa3711"></a>
 
 # Limitations of Angular
 
@@ -101,7 +101,7 @@ Now that you know the basic features of Angular, understanding its architecture 
 4.  **Verbose and Complex** A common issue in the Angular community is the verbosity of the framework. It is also fairly complex compared to other front-end tools.
 
 
-<a id="org30478e8"></a>
+<a id="org902d077"></a>
 
 # Course Structure
 
@@ -126,13 +126,13 @@ Now that you know the basic features of Angular, understanding its architecture 
 -   Course Project
 
 
-<a id="org45545ac"></a>
+<a id="orgfa82387"></a>
 
 # Course Project
 
 
-<a id="org53f7427"></a>
+<a id="org39a7919"></a>
 
-## [React Course Project](https://react-course-project-31af6.web.app/)
+## [Angular Course Project](https://ng-course-recipe-book-4d4d5.web.app/recipes)
 
 ![img](./resources/imgs/angular-course-project.jpg "Course Project")
